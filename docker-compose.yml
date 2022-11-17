@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  sd-automatic1111:
+    container_name: sd-automatic1111
+    build:
+      context: .
+      dockerfile: Dockerfile
+      shm_size: '2gb'
+    env_file: .env_docker
+    shm_size: 2gb
+    volumes:
+      - .:/sd-automatic1111
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - '7861:7860'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
