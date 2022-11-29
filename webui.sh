@@ -48,7 +48,10 @@ then
 fi
 
 # this script cannot be run as root by default
-can_run_as_root=0
+if [[ -z "${can_run_as_root}" ]]
+then
+    can_run_as_root=0
+fi
 
 # read any command line flags to the webui.sh script
 while getopts "f" flag
